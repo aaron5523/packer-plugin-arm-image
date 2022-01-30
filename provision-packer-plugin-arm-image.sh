@@ -21,6 +21,7 @@ else
   git clone ${GIT_CLONE_URL} packer-plugin-arm-image
 fi
 cd packer-plugin-arm-image
+go mod download
 go build
 
 # Check if plugin built and copy into place

@@ -42,27 +42,28 @@ echo "Removing existing Go packages and installing Go"
 sudo apt remove -y \
   'golang-*'
 cd /tmp
-wget https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz
-tar xf go1.14.3.linux-amd64.tar.gz
-sudo cp -r go /usr/lib/go-1.14
+#wget https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz
+wget https://go.dev/dl/go1.17.6.linux-amd64.tar.gz
+tar xf go1.17.6.linux-amd64.tar.gz
+sudo cp -r go /usr/lib/go-1.17
 rm -rf /tmp/go*
 
 # Set GO paths for vagrant user
-echo 'export GOROOT=/usr/lib/go-1.14
+echo 'export GOROOT=/usr/lib/go-1.17
 export GOPATH=$HOME/work
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' | tee -a /home/vagrant/.profile
 
 # Also set them while we work:
-export GOROOT=/usr/lib/go-1.14
+export GOROOT=/usr/lib/go-1.17
 export GOPATH=$HOME/work
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # Download and install packer
 [[ -e /tmp/packer ]] && rm -rf /tmp/packer*
-wget https://releases.hashicorp.com/packer/1.7.3/packer_1.7.3_linux_amd64.zip \
-    -q -O /tmp/packer_1.7.3_linux_amd64.zip
+wget https://releases.hashicorp.com/packer/1.7.9/packer_1.7.9_linux_amd64.zip \
+    -q -O /tmp/packer_1.7.9_linux_amd64.zip
 cd /tmp
-unzip -u packer_1.7.3_linux_amd64.zip
+unzip -u packer_1.7.9_linux_amd64.zip
 sudo cp packer /usr/local/bin
 sudo rm -rf /tmp/packer*
 cd ..
